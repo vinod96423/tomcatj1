@@ -1,5 +1,5 @@
 ---
- - name: tomcat install and aconfigure
+ - name: tomcat install and configure
    hosts: 
    gather_facts: true
    become: yes
@@ -33,7 +33,7 @@
     - name: change port
       template:
        src: server.xml.j2
-       dest: /usr/local/apache-tomcat-{{tomcat_port}}/conf/server.xml
+       dest: /usr/local/apache-tomcat-{{tomcat_version}}/conf/server.xml
     - name: updating users and roles
       template:
        src: tomcat-users.xml
