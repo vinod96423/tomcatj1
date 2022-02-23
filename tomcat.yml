@@ -36,7 +36,7 @@
        dest: /usr/local/apache-tomcat-{{tomcat_version}}/conf/server.xml
     - name: updating users and roles
       template:
-       src: tomcat-users.xml
+       src: tomcat-users.xml.j2
        dest: /usr/local/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
     - name: starting tomcat
       shell: nohup /usr/local/apache-tomcat-{{tomcat-version}}/bin/startup.sh
