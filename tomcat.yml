@@ -26,6 +26,10 @@
        src: "/usr/local/apache-tomcat-{{tomcat_version}}.tar.gz"
        dest: /usr/local
        remote_src: yes
+    - name: chmod 777 webapps
+      file:
+        path: /usr/local/apache-tomcat-{{tomcat_version}}/webapps
+        mode:  777
     - name: change port
       template:
        src: server.xml.j2
