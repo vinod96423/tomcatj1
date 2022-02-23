@@ -1,0 +1,38 @@
+---
+ - name: tomcat install and aconfigure
+   hosts: 
+   gather_facts: true
+   become: yes
+   vars:
+     tomcat_port: 8282
+     java_version: java-1.8.0-openjdk
+     tomcat_version: 9.0.58
+     tomcat_url: "https://dlcdn.apache.org/tomcat/tomcat-{{tomcat_version.split('.')[0]}}/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
+   tasks:
+    - name: update repo
+      yum:
+       name: "*"
+       state: latest
+    - name: Installing openJDK
+      yum:
+       name: "{{ java_version }}"
+       state: present
+    - name: Downloading tomcat
+      get-url:
+       url: "{{ tomcat_url }}"
+       dest: /usr/local
+    - name: extracting tomcat
+      unarchive:
+       src: "/usr/local/apache-tomcat-{{tomcat_version}}.tar.gz"
+       dest: /usr/local
+       remote_src: yes
+    - name: change port
+      template:
+       src: server.xml.j2
+       dest: /usr/local/apache-tomcat-{{tomcat_port}}/conf/server.xml
+    - name: updating users and roles
+      template:
+       src: tomcat-users.xml
+       dest: /usr/local/apache-tomcat-{{tomcat_version}}/conf/tomcat-users.xml
+    - name: starting tomcat
+      shell: nohup /usr/local/apache-tomcat-{{tomcat-version}}/bin/startup.sh
