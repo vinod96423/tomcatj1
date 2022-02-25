@@ -6,7 +6,7 @@
    vars:
      java_version: java-1.8.0-openjdk
      tomcat_version: 9.0.58
-     tomcat_url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
+     tomcat_url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz
    tasks:
     - name: update repo
       yum:
