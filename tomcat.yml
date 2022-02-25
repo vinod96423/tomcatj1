@@ -4,7 +4,6 @@
    gather_facts: true
    become: yes
    vars:
-     tomcat_port: 8282
      java_version: java-1.8.0-openjdk
      tomcat_version: 9.0.58
      tomcat_url: "https://dlcdn.apache.org/tomcat/tomcat-{{tomcat_version.split('.')[0]}}/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
