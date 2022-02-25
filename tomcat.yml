@@ -1,6 +1,6 @@
 ---
  - name: tomcat install and configure
-   hosts: 
+   hosts: localhost
    gather_facts: true
    become: yes
    vars:
